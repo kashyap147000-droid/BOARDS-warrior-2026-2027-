@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BOARD WARRIOR - Class 10 Board Exam Grind</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#FF0033',
+                            redDark: '#CC0029',
+                            redGlow: 'rgba(255, 0, 51, 0.35)',
+                            black: '#070709',
+                            cardBg: '#111116',
+                            cardBorder: '#22222D',
+                            greyText: '#9CA3AF',
+                            lightBg: '#F4F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Chakra Petch', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #070709;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(255, 0, 51, 0.12) 1px, transparent 1px), 
+                              radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+        }
+
+        .clip-angled {
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        }
+
+        .red-glow {
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.25);
+        }
+
+        .red-glow-sm {
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #22222D;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF0033;
+        }
+
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .progress-striped {
+            background-image: linear-gradient(
+                45deg, 
+                rgba(255, 255, 255, 0.15) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.15) 50%, 
+                rgba(255, 255, 255, 0.15) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            background-size: 1rem 1rem;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .animate-pulse-red {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-grid-pattern min-h-screen flex flex-col justify-between pb-20 md:pb-0 font-sans">
+
+    <div id="toast-container" class="fixed top-4 right-4 left-4 md:left-auto md:w-96 z-50 pointer-events-none flex flex-col gap-2"></div>
+
+    <!-- ========================================== -->
+    <!-- 1. SPLASH / STARTING SCREEN -->
+    <!-- ========================================== -->
+    <div id="splash-screen" class="fixed inset-0 bg-[#070709] z-50 flex flex-col justify-between p-6 overflow-y-auto bg-grid-pattern">
+        <div class="flex-1 flex flex-col justify-center items-center text-center my-auto">
+            <div class="relative mb-6">
+                <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#FF0033] to-[#88001B] p-0.5 flex items-center justify-center red-glow animate-pulse-red">
+                    <div class="w-full h-full bg-[#070709] rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-shield-halved text-4xl text-[#FF0033]"></i>
+                    </div>
+                </div>
+                <span class="absolute -bottom-2 -right-2 bg-[#FF0033] text-white text-[10px] font-display font-bold px-2 py-0.5 rounded uppercase tracking-wider">C10</span>
+            </div>
+
+            <h1 class="font-display text-4xl md:text-6xl font-bold tracking-wider text-white uppercase mb-1">
+                BOARD <span class="text-[#FF0033] drop-shadow-[0_0_15px_rgba(255,0,51,0.6)]">WARRIOR</span>
+            </h1>
+            <p class="font-tech text-lg md:text-xl text-gray-400 font-semibold tracking-widest uppercase mb-2">
+                CLASS 10 • BOARD EXAM GRIND
+            </p>
+            
+            <div class="inline-flex items-center gap-2 bg-[#111116] border border-[#FF0033]/40 px-3 py-1 rounded-full my-4">
+                <span class="w-2 h-2 rounded-full bg-[#FF0033] animate-ping"></span>
+                <span class="font-display text-xs font-bold tracking-widest text-gray-200">BUILT FOR THE ELITE</span>
+            </div>
+
+            <p class="text-xs text-gray-400 max-w-sm mt-2 leading-relaxed">
+                Dominate your CBSE Class 10 preparation. Daily missions, streak tracking, XP levels, chapter conquest, and persistent memory.
+            </p>
+        </div>
+
+        <div class="w-full max-w-md mx-auto space-y-4 text-center pb-6">
+            <button id="btn-start-journey" onclick="app.startSetupOrDashboard()" class="w-full py-4 bg-[#FF0033] hover:bg-[#CC0029] text-white font-display font-bold text-lg uppercase tracking-wider rounded-xl red-glow transition duration-200 active:scale-95 flex items-center justify-center gap-3 border border-red-500">
+                <span>START MY JOURNEY</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <div class="text-xs text-gray-400 font-tech tracking-wider uppercase">
+                MADE BY <span class="text-white font-bold tracking-widest border-b border-[#FF0033] pb-0.5">SHIVANSH KASHYAP</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. SETUP WIZARD -->
+    <!-- ========================================== -->
+    <div id="setup-wizard" class="hidden fixed inset-0 bg-[#070709] z-40 overflow-y-auto bg-grid-pattern p-4 md:p-8">
+        <div class="max-w-2xl mx-auto bg-[#111116] border border-[#22222D] rounded-2xl p-5 md:p-8 shadow-2xl relative">
+            
+            <div class="flex items-center justify-between border-b border-[#22222D] pb-4 mb-6">
+                <div>
+                    <div class="text-xs font-tech text-[#FF0033] font-bold uppercase tracking-widest" id="wizard-step-tag">STEP 1 OF 4</div>
+                    <h2 class="font-display text-2xl font-bold uppercase text-white" id="wizard-step-title">PERSONAL PROFILE</h2>
+                </div>
+                <div class="flex gap-1.5" id="wizard-dots">
+                    <div class="w-3 h-3 rounded-full bg-[#FF0033]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#22222D]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#22222D]"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#22222D]"></div>
+                </div>
+            </div>
+
+            <!-- STEP 1: PERSONAL SETUP -->
+            <div id="wizard-step-1" class="wizard-step space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">What is your full name?</label>
+                        <input type="text" id="setup-fullname" placeholder="e.g. Shivansh Kashyap" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">What should we call you? (Callsign)</label>
+                        <input type="text" id="setup-nickname" placeholder="e.g. Warrior / Shivansh" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Target Board / Exam</label>
+                        <select id="setup-board" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="CBSE Class 10 Board" selected>CBSE Class 10 Board</option>
+                            <option value="ICSE Class 10 Board">ICSE Class 10 Board</option>
+                            <option value="State Board Class 10">State Board Class 10</option>
+                            <option value="Other Board Exam">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Target Exam Start Date</label>
+                        <input type="date" id="setup-exam-date" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Daily Study Target (Hours)</label>
+                        <input type="number" id="setup-daily-hours" value="4" min="1" max="16" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Preferred Study Slot</label>
+                        <select id="setup-preferred-slot" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="Morning">Morning (5 AM - 12 PM)</option>
+                            <option value="Afternoon">Afternoon (12 PM - 5 PM)</option>
+                            <option value="Evening" selected>Evening (5 PM - 9 PM)</option>
+                            <option value="Night">Night Owl (9 PM - 2 AM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Daily Subjects Count Target</label>
+                        <input type="number" id="setup-daily-subjects-count" value="2" min="1" max="6" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Random Subject Switch Each Day?</label>
+                        <select id="setup-random-subjects" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="YES" selected>YES (Auto Random / Balanced)</option>
+                            <option value="NO">NO (Manual Selection)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Task Photo Proof System</label>
+                        <select id="setup-proof-system" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="YES" selected>YES - Upload Notes/Study Photo</option>
+                            <option value="NO">NO - Quick Checkbox Only</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Notifications & Reminders</label>
+                        <select id="setup-notifications" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="YES" selected>YES - Keep Me Disciplined</option>
+                            <option value="NO">NO - Silent Mode</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: SUBJECT SETUP -->
+            <div id="wizard-step-2" class="wizard-step hidden space-y-4">
+                <p class="text-xs text-gray-400">Class 10 core subjects are pre-loaded. Customize or add custom subjects:</p>
+                <div id="setup-subjects-list" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
+                <div class="pt-2">
+                    <button onclick="app.openAddSubjectModal()" class="w-full py-2 bg-[#070709] border border-dashed border-[#FF0033]/50 text-[#FF0033] hover:bg-[#FF0033]/10 font-tech font-bold text-xs uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>ADD CUSTOM SUBJECT</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: SYLLABUS AUDIT -->
+            <div id="wizard-step-3" class="wizard-step hidden space-y-4">
+                <div class="bg-[#070709] border border-[#FF0033]/30 p-4 rounded-xl text-center">
+                    <span class="text-xs font-tech text-gray-400 uppercase">HOW MUCH OF YOUR SYLLABUS IS COMPLETED?</span>
+                    <h3 class="font-display text-2xl font-bold text-white mt-1" id="wizard-overall-calc">0% COMPLETED</h3>
+                    <p class="text-xs text-gray-400 mt-1">Audit each chapter below using the sliders.</p>
+                </div>
+                <div id="wizard-chapter-audit-container" class="space-y-4 max-h-80 overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- STEP 4: CONFIRMATION -->
+            <div id="wizard-step-4" class="wizard-step hidden space-y-6 text-center">
+                <div class="py-4">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-[#FF0033]/10 border-2 border-[#FF0033] flex items-center justify-center mb-4 red-glow">
+                        <i class="fa-solid fa-skull-crossbones text-3xl text-[#FF0033]"></i>
+                    </div>
+                    <h2 class="font-display text-3xl font-bold text-white uppercase tracking-wider">YOUR BOARD WAR BEGINS NOW</h2>
+                    <p class="text-xs font-tech text-gray-400 tracking-widest uppercase mt-1">THE ELITE ROSTER IS READY</p>
+                </div>
+
+                <div class="bg-[#070709] border border-[#22222D] rounded-xl p-4 text-left grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                        <div class="text-[10px] font-tech text-gray-400 uppercase">WARRIOR</div>
+                        <div id="confirm-name" class="font-display font-bold text-white text-base truncate">User</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] font-tech text-gray-400 uppercase">START LEVEL</div>
+                        <div class="font-display font-bold text-[#FF0033] text-base">LVL 1 - ROOKIE</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] font-tech text-gray-400 uppercase">SYLLABUS READY</div>
+                        <div id="confirm-syllabus" class="font-display font-bold text-white text-base">0%</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] font-tech text-gray-400 uppercase">DAYS TO EXAM</div>
+                        <div id="confirm-days" class="font-display font-bold text-white text-base">-- DAYS</div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-400">All configurations are saved automatically to your device memory.</p>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex items-center justify-between border-t border-[#22222D] pt-4 mt-6">
+                <button id="wizard-btn-prev" onclick="app.prevWizardStep()" class="px-5 py-2.5 bg-[#070709] hover:bg-[#1a1a24] text-gray-400 hover:text-white font-tech font-bold text-xs uppercase rounded-xl transition border border-[#22222D] flex items-center gap-2">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>BACK</span>
+                </button>
+
+                <button id="wizard-btn-next" onclick="app.nextWizardStep()" class="px-6 py-2.5 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition flex items-center gap-2 border border-red-500">
+                    <span>CONTINUE</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3. MAIN APP DASHBOARD -->
+    <!-- ========================================== -->
+    <div id="main-app" class="hidden min-h-screen flex flex-col">
+        
+        <!-- TOP HEADER BAR -->
+        <header class="bg-[#070709]/90 backdrop-blur-md border-b border-[#22222D] sticky top-0 z-30 px-4 py-3">
+            <div class="max-w-6xl mx-auto flex items-center justify-between">
+                
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#111116] border border-[#FF0033] flex items-center justify-center text-[#FF0033] font-display font-bold text-lg red-glow-sm">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-display font-bold text-lg text-white uppercase tracking-wider leading-none" id="header-user-nickname">WARRIOR</span>
+                            <span class="bg-[#FF0033]/20 border border-[#FF0033] text-[#FF0033] font-tech font-bold text-[10px] px-1.5 py-0.5 rounded uppercase" id="header-user-level">LVL 1</span>
+                        </div>
+                        <div class="text-[11px] font-tech text-gray-400 tracking-widest uppercase">BOARD WARRIOR • CLASS 10</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 md:gap-4">
+                    <div class="bg-[#111116] border border-[#22222D] px-3 py-1.5 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-[#FF0033] text-sm animate-pulse"></i>
+                        <span class="font-display font-bold text-sm text-white" id="header-streak-count">0</span>
+                        <span class="text-[10px] font-tech text-gray-400 uppercase hidden sm:inline">DAYS</span>
+                    </div>
+
+                    <div class="bg-[#111116] border border-[#22222D] px-3 py-1.5 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-hourglass-half text-amber-500 text-xs"></i>
+                        <span class="font-display font-bold text-sm text-white" id="header-days-left">--</span>
+                        <span class="text-[10px] font-tech text-gray-400 uppercase hidden sm:inline">DAYS LEFT</span>
+                    </div>
+
+                    <button onclick="app.switchTab('settings')" class="w-9 h-9 rounded-xl bg-[#111116] border border-[#22222D] text-gray-300 hover:text-white hover:border-[#FF0033] transition flex items-center justify-center">
+                        <i class="fa-solid fa-gear text-sm"></i>
+                    </button>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- MAIN VIEWS -->
+        <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 pb-24">
+
+            <!-- TAB 1: HOME / DASHBOARD -->
+            <div id="tab-home" class="tab-content active space-y-6">
+                
+                <div class="bg-gradient-to-r from-[#111116] via-[#161620] to-[#111116] border border-[#22222D] rounded-2xl p-5 md:p-6 relative overflow-hidden clip-angled">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#FF0033]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                        <div>
+                            <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">THE ELITE PROGRESS</span>
+                            <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white tracking-wide">BOARD PREPARATION</h2>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-tech text-gray-400 uppercase">XP SCORE:</span>
+                            <span class="font-display text-xl font-bold text-[#FF0033]" id="dash-xp-display">0 / 500 XP</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-tech font-bold">
+                            <span class="text-gray-300">TOTAL SYLLABUS CONQUERED</span>
+                            <span class="text-[#FF0033]" id="dash-overall-percent">0%</span>
+                        </div>
+                        <div class="w-full h-4 bg-[#070709] rounded-full overflow-hidden p-0.5 border border-[#22222D]">
+                            <div id="dash-overall-bar" class="h-full bg-gradient-to-r from-[#88001B] to-[#FF0033] rounded-full transition-all duration-700 progress-striped" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-[#22222D]/60 flex flex-col md:flex-row md:items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-amber-500 text-xs"></i>
+                            <span class="text-xs font-tech font-bold text-gray-300" id="dash-level-title">LEVEL 1 — ROOKIE</span>
+                        </div>
+                        <div class="w-full md:w-2/3 h-2 bg-[#070709] rounded-full overflow-hidden border border-[#22222D]">
+                            <div id="dash-level-bar" class="h-full bg-amber-500 transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TODAY'S MISSIONS -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-crosshairs text-[#FF0033]"></i>
+                                <h3 class="font-display text-xl font-bold uppercase text-white tracking-wider">TODAY'S MISSION</h3>
+                            </div>
+                            <p class="text-xs text-gray-400">Targeting active subjects for continuous daily progress.</p>
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <button onclick="app.refreshDailySubjectsPrompt()" class="px-3 py-1.5 bg-[#111116] hover:bg-[#1c1c24] border border-[#22222D] hover:border-[#FF0033] text-xs font-tech font-bold uppercase text-gray-300 hover:text-white rounded-xl transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-shuffle text-xs text-[#FF0033]"></i>
+                                <span class="hidden sm:inline">SWAP SUBJECTS</span>
+                            </button>
+                            <button onclick="app.openAddTaskModal()" class="px-3 py-1.5 bg-[#FF0033] hover:bg-[#CC0029] text-xs font-tech font-bold uppercase text-white rounded-xl red-glow transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>ADD TASK</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="today-missions-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- BOSS CHALLENGES CARD -->
+                <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-dragon text-[#FF0033]"></i>
+                            <h3 class="font-display text-lg font-bold uppercase text-white">ACTIVE BOSS CHALLENGES</h3>
+                        </div>
+                        <button onclick="app.switchTab('quests')" class="text-xs font-tech text-[#FF0033] hover:underline uppercase font-bold">VIEW ALL QUESTS &rarr;</button>
+                    </div>
+
+                    <div id="dash-quick-quests" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: CALENDAR & PLANNER -->
+            <div id="tab-calendar" class="tab-content space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">SCHEDULE & HISTORY</span>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white">CALENDAR & PLANNER</h2>
+                    </div>
+
+                    <div class="flex items-center bg-[#111116] border border-[#22222D] p-1 rounded-xl">
+                        <button id="planner-btn-today" onclick="app.selectPlannerDate('today')" class="px-4 py-1.5 text-xs font-tech font-bold uppercase rounded-lg text-white bg-[#FF0033] transition">TODAY</button>
+                        <button id="planner-btn-tomorrow" onclick="app.selectPlannerDate('tomorrow')" class="px-4 py-1.5 text-xs font-tech font-bold uppercase rounded-lg text-gray-400 hover:text-white transition">TOMORROW</button>
+                    </div>
+                </div>
+
+                <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-4 md:p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <button onclick="app.changeMonth(-1)" class="p-2 bg-[#070709] border border-[#22222D] rounded-xl hover:text-[#FF0033] transition">
+                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                        </button>
+                        <h3 class="font-display text-xl font-bold text-white uppercase tracking-wider" id="calendar-month-year">SEPTEMBER 2026</h3>
+                        <button onclick="app.changeMonth(1)" class="p-2 bg-[#070709] border border-[#22222D] rounded-xl hover:text-[#FF0033] transition">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-7 text-center text-[10px] font-tech text-gray-400 uppercase font-bold border-b border-[#22222D] pb-2">
+                        <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+                    </div>
+
+                    <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-2"></div>
+
+                    <div class="flex flex-wrap items-center justify-center gap-4 pt-3 border-t border-[#22222D] text-[11px] font-tech text-gray-400">
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span>✓ Completed Tasks</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span><span>◐ Pending Tasks</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span><span>— No Tasks</span></div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center justify-between border-b border-[#22222D] pb-3">
+                        <div>
+                            <span class="text-[10px] font-tech text-[#FF0033] font-bold uppercase">PLANNED MISSIONS FOR</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" id="selected-date-title">TODAY</h3>
+                        </div>
+                        <button onclick="app.openAddTaskModal(null, app.selectedPlannerDateStr)" class="px-3 py-1.5 bg-[#FF0033] hover:bg-[#CC0029] text-xs font-tech font-bold uppercase text-white rounded-xl transition flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                            <span>PLAN TASK</span>
+                        </button>
+                    </div>
+
+                    <div id="selected-date-tasks-container" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- TAB 3: QUESTS & BOSSES -->
+            <div id="tab-quests" class="tab-content space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">GAME SYSTEM</span>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white">BOSS QUESTS & REWARDS</h2>
+                    </div>
+                    <button onclick="app.openCreateBossModal()" class="px-4 py-2 bg-[#FF0033] hover:bg-[#CC0029] text-xs font-tech font-bold uppercase text-white rounded-xl red-glow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-skull"></i>
+                        <span>NEW BOSS</span>
+                    </button>
+                </div>
+
+                <div id="boss-quests-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <!-- TAB 4: SUBJECTS & CHAPTER SYLLABUS -->
+            <div id="tab-subjects" class="tab-content space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">SYLLABUS MANAGEMENT</span>
+                        <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white">SUBJECTS & CHAPTERS</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="app.openAddChapterModal()" class="px-3 py-2 bg-[#111116] border border-[#22222D] hover:border-[#FF0033] text-xs font-tech font-bold uppercase text-white rounded-xl transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus text-[#FF0033]"></i>
+                            <span>ADD CHAPTER</span>
+                        </button>
+                        <button onclick="app.openAddSubjectModal()" class="px-4 py-2 bg-[#FF0033] hover:bg-[#CC0029] text-xs font-tech font-bold uppercase text-white rounded-xl red-glow transition flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>ADD SUBJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="subjects-detailed-container" class="space-y-4"></div>
+            </div>
+
+            <!-- TAB 5: PROGRESS & WEEKLY REVIEW -->
+            <div id="tab-progress" class="tab-content space-y-6">
+                <div>
+                    <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">ANALYTICS & METRICS</span>
+                    <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white">PROGRESS & PERFORMANCE</h2>
+                </div>
+
+                <div class="bg-gradient-to-br from-[#111116] to-[#181824] border border-[#22222D] rounded-2xl p-6 space-y-6 relative overflow-hidden clip-angled">
+                    <div class="flex items-center justify-between border-b border-[#22222D] pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-[#FF0033]/20 border border-[#FF0033] flex items-center justify-center text-[#FF0033]">
+                                <i class="fa-solid fa-chart-line text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-xl font-bold uppercase text-white">WEEKLY REPORT</h3>
+                                <p class="text-xs text-gray-400">Automated performance telemetry</p>
+                            </div>
+                        </div>
+                        <span class="bg-[#070709] border border-[#22222D] px-3 py-1 rounded-full text-xs font-tech text-[#FF0033] font-bold uppercase">7 DAY CYCLE</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-[#070709] border border-[#22222D] p-4 rounded-xl">
+                            <div class="text-[10px] font-tech text-gray-400 uppercase">ACTIVE STREAK</div>
+                            <div class="font-display text-2xl font-bold text-white mt-1" id="weekly-study-days">0 DAYS</div>
+                        </div>
+                        <div class="bg-[#070709] border border-[#22222D] p-4 rounded-xl">
+                            <div class="text-[10px] font-tech text-gray-400 uppercase">TASKS DONE</div>
+                            <div class="font-display text-2xl font-bold text-emerald-500 mt-1" id="weekly-tasks-done">0</div>
+                        </div>
+                        <div class="bg-[#070709] border border-[#22222D] p-4 rounded-xl">
+                            <div class="text-[10px] font-tech text-gray-400 uppercase">TOTAL XP</div>
+                            <div class="font-display text-2xl font-bold text-amber-500 mt-1" id="weekly-xp-gained">0</div>
+                        </div>
+                        <div class="bg-[#070709] border border-[#22222D] p-4 rounded-xl">
+                            <div class="text-[10px] font-tech text-gray-400 uppercase">SYLLABUS DONE</div>
+                            <div class="font-display text-2xl font-bold text-[#FF0033] mt-1" id="weekly-total-progress">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-[#070709] border border-emerald-500/30 p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500 flex items-center justify-center text-emerald-500 text-2xl">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <div>
+                                <div class="text-[10px] font-tech text-emerald-400 uppercase font-bold">YOUR STRONGEST SUBJECT</div>
+                                <div class="font-display text-lg font-bold text-white uppercase" id="weekly-strongest-sub">ANALYZING...</div>
+                                <div class="text-xs text-gray-400" id="weekly-strongest-detail">Highest progress rate</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#070709] border border-[#FF0033]/30 p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-[#FF0033]/10 border border-[#FF0033] flex items-center justify-center text-[#FF0033] text-2xl">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <div class="text-[10px] font-tech text-[#FF0033] uppercase font-bold">NEEDS MORE ATTENTION</div>
+                                <div class="font-display text-lg font-bold text-white uppercase" id="weekly-weakest-sub">ANALYZING...</div>
+                                <div class="text-xs text-gray-400" id="weekly-weakest-detail">Lowest completion rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                    <h3 class="font-display text-lg font-bold uppercase text-white">SUBJECTWISE BREAKDOWN</h3>
+                    <div id="analytics-subjects-bars" class="space-y-4"></div>
+                </div>
+            </div>
+
+            <!-- TAB 6: SETTINGS & CUSTOMIZATION -->
+            <div id="tab-settings" class="tab-content space-y-6">
+                <div>
+                    <span class="text-xs font-tech text-[#FF0033] font-bold tracking-widest uppercase">CONFIGURATION</span>
+                    <h2 class="font-display text-2xl md:text-3xl font-bold uppercase text-white">SETTINGS & DATA</h2>
+                </div>
+
+                <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-6">
+                    <div class="space-y-4 border-b border-[#22222D] pb-6">
+                        <h3 class="font-display text-lg font-bold uppercase text-white flex items-center gap-2">
+                            <i class="fa-solid fa-user-gear text-[#FF0033]"></i>
+                            <span>WARRIOR PROFILE</span>
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Full Name</label>
+                                <input type="text" id="settings-name" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Callsign / Nickname</label>
+                                <input type="text" id="settings-nickname" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Target Exam Date</label>
+                                <input type="date" id="settings-exam-date" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Daily Study Target (Hours)</label>
+                                <input type="number" id="settings-daily-hours" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            </div>
+                        </div>
+
+                        <button onclick="app.saveProfileSettings()" class="px-5 py-2.5 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl transition red-glow">
+                            SAVE PROFILE CHANGES
+                        </button>
+                    </div>
+
+                    <div class="space-y-4 border-b border-[#22222D] pb-6">
+                        <h3 class="font-display text-lg font-bold uppercase text-white flex items-center gap-2">
+                            <i class="fa-solid fa-database text-[#FF0033]"></i>
+                            <span>DATA SAFETY & PERSISTENCE</span>
+                        </h3>
+                        <p class="text-xs text-gray-400">Export your local state to JSON or import previous backup data anytime.</p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="app.exportUserData()" class="px-4 py-2.5 bg-[#070709] border border-[#22222D] hover:border-[#FF0033] text-white font-tech font-bold text-xs uppercase rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-download text-[#FF0033]"></i>
+                                <span>EXPORT DATA (JSON)</span>
+                            </button>
+                            <label class="px-4 py-2.5 bg-[#070709] border border-[#22222D] hover:border-[#FF0033] text-white font-tech font-bold text-xs uppercase rounded-xl transition flex items-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-upload text-[#FF0033]"></i>
+                                <span>IMPORT DATA (JSON)</span>
+                                <input type="file" accept=".json" onchange="app.importUserData(event)" class="hidden">
+                            </label>
+                            <button onclick="app.openConfirmModal('Reset All Data?', 'Are you sure you want to clear all subjects, chapters and tasks? This action cannot be undone.', () => app.resetAllData())" class="px-4 py-2.5 bg-red-950/40 border border-red-600/50 hover:bg-red-900/60 text-red-200 font-tech font-bold text-xs uppercase rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span>RESET ALL PROGRESS</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <div class="bg-[#070709] border border-[#FF0033]/30 p-5 rounded-xl text-center space-y-2">
+                            <h4 class="font-display text-xl font-bold text-white uppercase tracking-wider">BOARD WARRIOR V1.0</h4>
+                            <p class="text-xs text-gray-400 max-w-md mx-auto">
+                                Class 10 CBSE Board Exam Tracker & Quest System designed for dedicated toppers.
+                            </p>
+                            <div class="text-xs font-tech text-[#FF0033] font-bold uppercase tracking-widest pt-2">
+                                APP CREATED BY SHIVANSH KASHYAP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- BOTTOM NAVIGATION BAR -->
+        <nav class="fixed bottom-0 left-0 right-0 bg-[#070709]/95 backdrop-blur-lg border-t border-[#22222D] z-30 px-2 py-2">
+            <div class="max-w-md mx-auto flex items-center justify-around">
+                <button onclick="app.switchTab('home')" class="nav-btn flex flex-col items-center gap-1 text-[#FF0033] transition active:scale-95" data-tab="home">
+                    <i class="fa-solid fa-shield-halved text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">HOME</span>
+                </button>
+
+                <button onclick="app.switchTab('calendar')" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white transition active:scale-95" data-tab="calendar">
+                    <i class="fa-solid fa-calendar-days text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">PLANNER</span>
+                </button>
+
+                <button onclick="app.switchTab('quests')" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white transition active:scale-95" data-tab="quests">
+                    <i class="fa-solid fa-dragon text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">QUESTS</span>
+                </button>
+
+                <button onclick="app.switchTab('subjects')" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white transition active:scale-95" data-tab="subjects">
+                    <i class="fa-solid fa-book-bookmark text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">SYLLABUS</span>
+                </button>
+
+                <button onclick="app.switchTab('progress')" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white transition active:scale-95" data-tab="progress">
+                    <i class="fa-solid fa-chart-line text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">ANALYTICS</span>
+                </button>
+
+                <button onclick="app.switchTab('settings')" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white transition active:scale-95" data-tab="settings">
+                    <i class="fa-solid fa-gear text-lg"></i>
+                    <span class="text-[10px] font-tech uppercase font-bold">SETTINGS</span>
+                </button>
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODALS SECTION -->
+    <!-- ========================================== -->
+
+    <!-- ADD/EDIT TASK MODAL -->
+    <div id="modal-task" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-md p-6 space-y-4 relative">
+            <button onclick="app.closeModal('modal-task')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="font-display text-xl font-bold uppercase text-white" id="modal-task-title">ADD NEW TASK</h3>
+
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Task Title</label>
+                    <input type="text" id="task-input-title" placeholder="e.g. Solve 20 NCERT Questions" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Subject</label>
+                        <select id="task-input-subject" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none"></select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Slot</label>
+                        <select id="task-input-slot" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                            <option value="MORNING">MORNING</option>
+                            <option value="AFTERNOON">AFTERNOON</option>
+                            <option value="EVENING" selected>EVENING</option>
+                            <option value="NIGHT">NIGHT</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Est. Time (Mins)</label>
+                        <input type="number" id="task-input-time" value="45" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech uppercase text-gray-400 mb-1">XP Reward</label>
+                        <input type="number" id="task-input-xp" value="50" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Scheduled Date</label>
+                    <input type="date" id="task-input-date" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+            </div>
+
+            <button onclick="app.saveTaskFromModal()" class="w-full py-3 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition">
+                SAVE TASK MISSION
+            </button>
+        </div>
+    </div>
+
+    <!-- ADD SUBJECT MODAL -->
+    <div id="modal-add-subject" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-md p-6 space-y-4 relative">
+            <button onclick="app.closeModal('modal-add-subject')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="font-display text-xl font-bold uppercase text-white">ADD NEW SUBJECT</h3>
+
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Subject Name</label>
+                    <input type="text" id="sub-input-name" placeholder="e.g. COMPUTER APPLICATIONS" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Icon Style</label>
+                    <select id="sub-input-icon" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                        <option value="fa-book">Book</option>
+                        <option value="fa-calculator">Calculator / Math</option>
+                        <option value="fa-flask">Science / Flask</option>
+                        <option value="fa-globe">Globe / SST</option>
+                        <option value="fa-laptop-code">Computer / Code</option>
+                        <option value="fa-language">Language</option>
+                        <option value="fa-brain">Logic / Brain</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="app.saveNewSubjectModal()" class="w-full py-3 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition">
+                CREATE SUBJECT
+            </button>
+        </div>
+    </div>
+
+    <!-- ADD CHAPTER MODAL -->
+    <div id="modal-add-chapter" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-md p-6 space-y-4 relative">
+            <button onclick="app.closeModal('modal-add-chapter')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="font-display text-xl font-bold uppercase text-white">ADD NEW CHAPTER</h3>
+
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Select Subject</label>
+                    <select id="ch-input-subject" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none"></select>
+                </div>
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Chapter Name / Title</label>
+                    <input type="text" id="ch-input-name" placeholder="e.g. Chapter 1 - Fundamental Concepts" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Initial Completion %</label>
+                    <input type="number" id="ch-input-progress" value="0" min="0" max="100" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+            </div>
+
+            <button onclick="app.saveNewChapterModal()" class="w-full py-3 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition">
+                ADD CHAPTER TO SYLLABUS
+            </button>
+        </div>
+    </div>
+
+    <!-- CREATE BOSS QUEST MODAL -->
+    <div id="modal-boss" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-md p-6 space-y-4 relative">
+            <button onclick="app.closeModal('modal-boss')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="font-display text-xl font-bold uppercase text-white">CREATE BOSS QUEST</h3>
+
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Boss Title / Challenge</label>
+                    <input type="text" id="boss-input-title" placeholder="e.g. FINISH 5 CHAPTERS THIS WEEK" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">Target Count</label>
+                    <input type="number" id="boss-input-target" value="5" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-tech uppercase text-gray-400 mb-1">XP Reward</label>
+                    <input type="number" id="boss-input-xp" value="500" class="w-full bg-[#070709] border border-[#22222D] rounded-xl p-3 text-sm text-white focus:border-[#FF0033] focus:outline-none">
+                </div>
+            </div>
+
+            <button onclick="app.saveBossQuestModal()" class="w-full py-3 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition">
+                DEPLOY BOSS CHALLENGE
+            </button>
+        </div>
+    </div>
+
+    <!-- TASK PROOF UPLOAD MODAL -->
+    <div id="modal-proof" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-md p-6 space-y-4 relative text-center">
+            <button onclick="app.closeModal('modal-proof')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="w-12 h-12 mx-auto rounded-full bg-[#FF0033]/10 border border-[#FF0033] flex items-center justify-center text-[#FF0033]">
+                <i class="fa-solid fa-camera text-xl"></i>
+            </div>
+
+            <h3 class="font-display text-xl font-bold uppercase text-white">ATTACH TASK PROOF</h3>
+            <p class="text-xs text-gray-400">Upload notes or study evidence to verify task completion and claim XP.</p>
+
+            <div id="proof-preview-box" class="w-full h-44 bg-[#070709] border border-dashed border-[#22222D] rounded-xl flex items-center justify-center overflow-hidden relative">
+                <span class="text-xs text-gray-500 font-tech uppercase">NO IMAGE SELECTED</span>
+            </div>
+
+            <input type="file" id="proof-file-input" accept="image/*" onchange="app.handleProofImageSelect(event)" class="hidden">
+
+            <div class="flex gap-2">
+                <button onclick="document.getElementById('proof-file-input').click()" class="flex-1 py-2.5 bg-[#070709] border border-[#22222D] hover:border-[#FF0033] text-white font-tech font-bold text-xs uppercase rounded-xl transition">
+                    <i class="fa-solid fa-image mr-1"></i> SELECT PHOTO
+                </button>
+                <button onclick="app.confirmTaskCompletionWithProof()" class="flex-1 py-2.5 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow transition">
+                    VERIFY & CLAIM XP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CONFIRMATION MODAL (Replaces confirm dialog) -->
+    <div id="modal-confirm" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-[#111116] border border-[#22222D] rounded-2xl w-full max-w-sm p-6 space-y-4 relative text-center">
+            <h3 class="font-display text-lg font-bold uppercase text-white" id="confirm-modal-title">CONFIRM ACTION</h3>
+            <p class="text-xs text-gray-400" id="confirm-modal-desc">Are you sure you want to proceed?</p>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="app.closeModal('modal-confirm')" class="flex-1 py-2.5 bg-[#070709] border border-[#22222D] text-gray-300 font-tech font-bold text-xs uppercase rounded-xl">CANCEL</button>
+                <button id="confirm-modal-action-btn" class="flex-1 py-2.5 bg-[#FF0033] hover:bg-[#CC0029] text-white font-tech font-bold text-xs uppercase rounded-xl red-glow">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- APPLICATION JAVASCRIPT CORE ENGINE -->
+    <!-- ========================================== -->
+    <script>
+        /**
+         * BOARD WARRIOR - Class 10 Board Exam Productivity Architecture
+         * Created by Shivansh Kashyap
+         */
+
+        const DEFAULT_CBSE_SUBJECTS = [
+            {
+                id: 'sub_maths',
+                name: 'MATHEMATICS',
+                icon: 'fa-calculator',
+                color: '#FF0033',
+                chapters: [
+                    { id: 'm1', name: 'Real Numbers', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm2', name: 'Polynomials', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm3', name: 'Pair of Linear Equations', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm4', name: 'Quadratic Equations', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm5', name: 'Arithmetic Progressions', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm6', name: 'Triangles', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm7', name: 'Coordinate Geometry', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm8', name: 'Introduction to Trigonometry', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm9', name: 'Applications of Trigonometry', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm10', name: 'Circles', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm11', name: 'Areas Related to Circles', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm12', name: 'Surface Areas and Volumes', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm13', name: 'Statistics', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'm14', name: 'Probability', status: 'NOT_STARTED', progress: 0 }
+                ]
+            },
+            {
+                id: 'sub_science',
+                name: 'SCIENCE',
+                icon: 'fa-flask',
+                color: '#3B82F6',
+                chapters: [
+                    { id: 's1', name: 'Chemical Reactions and Equations', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's2', name: 'Acids, Bases and Salts', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's3', name: 'Metals and Non-metals', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's4', name: 'Carbon and its Compounds', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's5', name: 'Life Processes', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's6', name: 'Control and Coordination', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's7', name: 'How do Organisms Reproduce?', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's8', name: 'Heredity and Evolution', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's9', name: 'Light – Reflection & Refraction', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's10', name: 'Human Eye & Colorful World', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's11', name: 'Electricity', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's12', name: 'Magnetic Effects of Current', status: 'NOT_STARTED', progress: 0 },
+                    { id: 's13', name: 'Our Environment', status: 'NOT_STARTED', progress: 0 }
+                ]
+            },
+            {
+                id: 'sub_sst',
+                name: 'SOCIAL SCIENCE',
+                icon: 'fa-globe-americas',
+                color: '#10B981',
+                chapters: [
+                    { id: 'sst1', name: 'Rise of Nationalism in Europe', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst2', name: 'Nationalism in India', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst3', name: 'Resources and Development', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst4', name: 'Agriculture', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst5', name: 'Power Sharing & Federalism', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst6', name: 'Sectors of Indian Economy', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'sst7', name: 'Money and Credit', status: 'NOT_STARTED', progress: 0 }
+                ]
+            },
+            {
+                id: 'sub_english',
+                name: 'ENGLISH',
+                icon: 'fa-book-open',
+                color: '#F59E0B',
+                chapters: [
+                    { id: 'eng1', name: 'A Letter to God & Poems', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'eng2', name: 'Nelson Mandela: Long Walk to Freedom', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'eng3', name: 'Two Stories About Flying', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'eng4', name: 'From the Diary of Anne Frank', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'eng5', name: 'Glimpses of India', status: 'NOT_STARTED', progress: 0 },
+                    { id: 'eng6', name: 'Footprints Without Feet Chapter 1-5', status: 'NOT_STARTED', progress: 0 }
+                ]
+            }
+        ];
+
+        const LEVEL_TITLES = [
+            { level: 1, name: 'ROOKIE', minXp: 0, maxXp: 500 },
+            { level: 2, name: 'GRINDER', minXp: 500, maxXp: 1200 },
+            { level: 3, name: 'WARRIOR', minXp: 1200, maxXp: 2200 },
+            { level: 4, name: 'ELITE', minXp: 2200, maxXp: 3500 },
+            { level: 5, name: 'BOARD BEAST', minXp: 3500, maxXp: 5000 },
+            { level: 6, name: 'TOPPER MODE', minXp: 5000, maxXp: 7500 },
+            { level: 7, name: 'FINAL BOSS', minXp: 7500, maxXp: 99999 }
+        ];
+
+        class BoardWarriorApp {
+            constructor() {
+                this.storageKey = 'BOARD_WARRIOR_DATA_V2';
+                this.state = this.loadState();
+                this.wizardCurrentStep = 1;
+                this.selectedPlannerDateStr = this.getTodayDateString();
+                this.calendarCurrentMonth = new Date();
+                this.pendingProofTaskId = null;
+                this.pendingProofImageData = null;
+                this.audioCtx = null;
+            }
+
+            getDefaultState() {
+                const targetExam = new Date();
+                targetExam.setMonth(targetExam.getMonth() + 5);
+
+                return {
+                    setupCompleted: false,
+                    profile: {
+                        fullname: 'Shivansh Kashyap',
+                        nickname: 'WARRIOR',
+                        board: 'CBSE Class 10 Board',
+                        examDate: targetExam.toISOString().split('T')[0],
+                        dailyHours: 4,
+                        preferredSlot: 'Evening',
+                        dailySubjectsCount: 2,
+                        randomSubjects: 'YES',
+                        proofRequired: 'YES',
+                        notifications: 'YES'
+                    },
+                    xp: 0,
+                    streak: 0,
+                    lastCompletedDate: null,
+                    todaySubjects: [],
+                    subjects: JSON.parse(JSON.stringify(DEFAULT_CBSE_SUBJECTS)),
+                    tasks: [
+                        {
+                            id: 't_demo1',
+                            title: 'Revise Life Processes diagrams',
+                            subjectId: 'sub_science',
+                            slot: 'MORNING',
+                            time: 45,
+                            xp: 50,
+                            date: this.getTodayDateString(),
+                            completed: false,
+                            proofImage: null
+                        },
+                        {
+                            id: 't_demo2',
+                            title: 'Solve 20 Quadratic Equations PYQs',
+                            subjectId: 'sub_maths',
+                            slot: 'EVENING',
+                            time: 60,
+                            xp: 75,
+                            date: this.getTodayDateString(),
+                            completed: false,
+                            proofImage: null
+                        }
+                    ],
+                    bosses: [
+                        { id: 'b1', title: 'SOLVE 50 MATHEMATICS PYQs', current: 0, target: 50, xp: 500, claimed: false },
+                        { id: 'b2', title: 'COMPLETE 3 SCIENCE CHAPTERS', current: 0, target: 3, xp: 600, claimed: false },
+                        { id: 'b3', title: 'MAINTAIN 7-DAY WAR STREAK', current: 0, target: 7, xp: 750, claimed: false }
+                    ]
+                };
+            }
+
+            loadState() {
+                try {
+                    const raw = localStorage.getItem(this.storageKey);
+                    if (raw) return JSON.parse(raw);
+                } catch (e) {
+                    console.error('Local storage load error:', e);
+                }
+                return this.getDefaultState();
+            }
+
+            saveState() {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(this.state));
+                } catch (e) {
+                    console.error('Local storage save error:', e);
+                }
+            }
+
+            playSound(type) {
+                try {
+                    if (!this.audioCtx) {
+                        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (this.audioCtx.state === 'suspended') {
+                        this.audioCtx.resume();
+                    }
+
+                    const osc = this.audioCtx.createOscillator();
+                    const gain = this.audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.audioCtx.destination);
+
+                    if (type === 'complete') {
+                        osc.frequency.setValueAtTime(523.25, this.audioCtx.currentTime);
+                        osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.2);
+                        gain.gain.setValueAtTime(0.2, this.audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.25);
+                        osc.start();
+                        osc.stop(this.audioCtx.currentTime + 0.25);
+                    } else if (type === 'levelup') {
+                        osc.frequency.setValueAtTime(440, this.audioCtx.currentTime);
+                        osc.frequency.setValueAtTime(554.37, this.audioCtx.currentTime + 0.1);
+                        osc.frequency.setValueAtTime(659.25, this.audioCtx.currentTime + 0.2);
+                        osc.frequency.setValueAtTime(880, this.audioCtx.currentTime + 0.3);
+                        gain.gain.setValueAtTime(0.3, this.audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.5);
+                        osc.start();
+                        osc.stop(this.audioCtx.currentTime + 0.5);
+                    }
+                } catch (e) {}
+            }
+
+            showToast(msg, type = 'info') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `p-3 rounded-xl border font-tech text-xs uppercase font-bold flex items-center justify-between shadow-xl transition-all duration-300 transform translate-y-2 opacity-0 ${
+                    type === 'success' ? 'bg-emerald-950/90 border-emerald-500 text-emerald-200' :
+                    type === 'error' ? 'bg-red-950/90 border-[#FF0033] text-red-200' :
+                    'bg-[#111116] border-[#FF0033] text-white'
+                }`;
+                toast.innerHTML = `<span>${msg}</span><i class="fa-solid fa-shield-halved text-[#FF0033]"></i>`;
+                container.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-2', 'opacity-0');
+                }, 10);
+
+                setTimeout(() => {
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3500);
+            }
+
+            getTodayDateString() {
+                const d = new Date();
+                return d.toISOString().split('T')[0];
+            }
+
+            getTomorrowDateString() {
+                const d = new Date();
+                d.setDate(d.getDate() + 1);
+                return d.toISOString().split('T')[0];
+            }
+
+            getDaysRemaining(examDateStr) {
+                if (!examDateStr) return 0;
+                const target = new Date(examDateStr);
+                const today = new Date();
+                const diffTime = target - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays > 0 ? diffDays : 0;
+            }
+
+            init() {
+                if (!this.state.todaySubjects || !this.state.todaySubjects.length) {
+                    this.pickDailySubjects();
+                }
+
+                if (this.state.setupCompleted) {
+                    document.getElementById('splash-screen').classList.add('hidden');
+                    document.getElementById('main-app').classList.remove('hidden');
+                    this.renderDashboard();
+                } else {
+                    document.getElementById('splash-screen').classList.remove('hidden');
+                    document.getElementById('main-app').classList.add('hidden');
+                }
+            }
+
+            startSetupOrDashboard() {
+                if (this.state.setupCompleted) {
+document.getElementById('splash-screen').classList.add('hidden');
+                    document.getElementById('main-app').classList.remove('hidden');
+                    this.renderDashboard();
+                } else {
+                    document.getElementById('splash-screen').classList.add('hidden');
+                    document.getElementById('setup-wizard').classList.remove('hidden');
+                    this.renderWizardStep();
+                }
+            }
+
+            renderWizardStep() {
+                const step = this.wizardCurrentStep;
+                document.querySelectorAll('.wizard-step').forEach(el => el.classList.add('hidden'));
+                document.getElementById(`wizard-step-${step}`).classList.remove('hidden');
+
+                document.getElementById('wizard-step-tag').innerText = `STEP ${step} OF 4`;
+                const titles = ['PERSONAL PROFILE', 'SUBJECTS CONFIGURATION', 'SYLLABUS AUDIT', 'WARRIOR CONFIRMATION'];
+                document.getElementById('wizard-step-title').innerText = titles[step - 1];
+
+                if (step === 1) {
+                    document.getElementById('setup-fullname').value = this.state.profile.fullname || '';
+                    document.getElementById('setup-nickname').value = this.state.profile.nickname || '';
+                    document.getElementById('setup-board').value = this.state.profile.board || 'CBSE Class 10 Board';
+                    document.getElementById('setup-exam-date').value = this.state.profile.examDate || '';
+                    document.getElementById('setup-daily-hours').value = this.state.profile.dailyHours || 4;
+                    document.getElementById('setup-preferred-slot').value = this.state.profile.preferredSlot || 'Evening';
+                } else if (step === 2) {
+                    this.renderWizardSubjectsList();
+                } else if (step === 3) {
+                    this.renderWizardSyllabusAudit();
+                } else if (step === 4) {
+                    document.getElementById('confirm-name').innerText = this.state.profile.nickname || 'Warrior';
+                    document.getElementById('confirm-syllabus').innerText = `${this.calculateOverallProgress()}%`;
+                    document.getElementById('confirm-days').innerText = `${this.getDaysRemaining(this.state.profile.examDate)} DAYS`;
+                }
+
+                const dots = document.getElementById('wizard-dots').children;
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = i < step ? 'w-3 h-3 rounded-full bg-[#FF0033]' : 'w-3 h-3 rounded-full bg-[#22222D]';
+                }
+
+                document.getElementById('wizard-btn-prev').style.visibility = step === 1 ? 'hidden' : 'visible';
+                document.getElementById('wizard-btn-next').innerText = step === 4 ? 'START TRACKING' : 'CONTINUE';
+            }
+
+            nextWizardStep() {
+                if (this.wizardCurrentStep === 1) {
+                    this.state.profile.fullname = document.getElementById('setup-fullname').value || 'Warrior';
+                    this.state.profile.nickname = document.getElementById('setup-nickname').value || 'Warrior';
+                    this.state.profile.board = document.getElementById('setup-board').value;
+                    this.state.profile.examDate = document.getElementById('setup-exam-date').value;
+                    this.state.profile.dailyHours = parseInt(document.getElementById('setup-daily-hours').value) || 4;
+                    this.state.profile.preferredSlot = document.getElementById('setup-preferred-slot').value;
+                    this.state.profile.dailySubjectsCount = parseInt(document.getElementById('setup-daily-subjects-count').value) || 2;
+                    this.state.profile.randomSubjects = document.getElementById('setup-random-subjects').value;
+                    this.state.profile.proofRequired = document.getElementById('setup-proof-system').value;
+                    this.state.profile.notifications = document.getElementById('setup-notifications').value;
+                }
+
+                if (this.wizardCurrentStep < 4) {
+                    this.wizardCurrentStep++;
+                    this.renderWizardStep();
+                } else {
+                    this.state.setupCompleted = true;
+                    this.pickDailySubjects();
+                    this.saveState();
+
+                    document.getElementById('setup-wizard').classList.add('hidden');
+                    document.getElementById('main-app').classList.remove('hidden');
+                    this.renderDashboard();
+                    this.showToast('WELCOME BOARD WARRIOR! YOUR GRIND BEGINS NOW.', 'success');
+                }
+            }
+
+            prevWizardStep() {
+                if (this.wizardCurrentStep > 1) {
+                    this.wizardCurrentStep--;
+                    this.renderWizardStep();
+                }
+            }
+
+            renderWizardSubjectsList() {
+                const container = document.getElementById('setup-subjects-list');
+                container.innerHTML = this.state.subjects.map(sub => `
+                    <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid ${sub.icon} text-[#FF0033]"></i>
+                            <div>
+                                <div class="font-display font-bold text-white text-sm">${sub.name}</div>
+                                <div class="text-[10px] font-tech text-gray-400 uppercase">${sub.chapters.length} CHAPTERS</div>
+                            </div>
+                        </div>
+                        <button onclick="app.removeSubject('${sub.id}')" class="text-xs text-red-500 hover:text-red-400 p-2">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            renderWizardSyllabusAudit() {
+                const container = document.getElementById('wizard-chapter-audit-container');
+                document.getElementById('wizard-overall-calc').innerText = `${this.calculateOverallProgress()}% COMPLETED`;
+
+                container.innerHTML = this.state.subjects.map(sub => `
+                    <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl space-y-2">
+                        <div class="flex items-center justify-between border-b border-[#22222D] pb-2">
+                            <span class="font-display font-bold text-xs text-[#FF0033] uppercase">${sub.name}</span>
+                            <span class="text-[10px] font-tech text-gray-400">${this.calculateSubjectProgress(sub.id)}% DONE</span>
+                        </div>
+                        <div class="space-y-2 pt-1">
+                            ${sub.chapters.map(ch => `
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#111116] p-2 rounded-lg text-xs">
+                                    <span class="text-gray-200 flex-1">${ch.name}</span>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" min="0" max="100" value="${ch.progress}" 
+                                            onchange="app.updateChapterProgressWizard('${sub.id}', '${ch.id}', this.value)"
+                                            class="w-24 accent-[#FF0033]">
+                                        <span class="font-tech text-[#FF0033] font-bold w-10 text-right">${ch.progress}%</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            updateChapterProgressWizard(subId, chId, val) {
+                const sub = this.state.subjects.find(s => s.id === subId);
+                if (sub) {
+                    const ch = sub.chapters.find(c => c.id === chId);
+                    if (ch) {
+                        ch.progress = parseInt(val);
+                        ch.status = ch.progress === 100 ? 'COMPLETED' : ch.progress > 0 ? 'IN_PROGRESS' : 'NOT_STARTED';
+                    }
+                }
+                this.saveState();
+                this.renderWizardSyllabusAudit();
+            }
+
+            calculateSubjectProgress(subId) {
+                const sub = this.state.subjects.find(s => s.id === subId);
+                if (!sub || !sub.chapters.length) return 0;
+                const total = sub.chapters.reduce((acc, c) => acc + (c.progress || 0), 0);
+                return Math.round(total / sub.chapters.length);
+            }
+
+            calculateOverallProgress() {
+                if (!this.state.subjects.length) return 0;
+                let grandTotal = 0;
+                let chapterCount = 0;
+                this.state.subjects.forEach(sub => {
+                    sub.chapters.forEach(ch => {
+                        grandTotal += (ch.progress || 0);
+                        chapterCount++;
+                    });
+                });
+                return chapterCount ? Math.round(grandTotal / chapterCount) : 0;
+            }
+
+            getUserLevelData() {
+                const xp = this.state.xp;
+                let lvl = LEVEL_TITLES[0];
+                for (let l of LEVEL_TITLES) {
+                    if (xp >= l.minXp) lvl = l;
+                }
+                return lvl;
+            }
+
+            addXp(amount) {
+                const prevLevel = this.getUserLevelData().level;
+                this.state.xp += amount;
+                const newLevel = this.getUserLevelData().level;
+
+                this.playSound('complete');
+
+                if (newLevel > prevLevel) {
+                    this.playSound('levelup');
+                    this.showToast(`LEVEL UP! YOU ARE NOW LEVEL ${newLevel} - ${this.getUserLevelData().name}`, 'success');
+                } else {
+                    this.showToast(`+${amount} XP EARNED!`, 'success');
+                }
+
+                this.saveState();
+                this.renderDashboard();
+            }
+
+            pickDailySubjects() {
+                if (!this.state.subjects.length) return;
+                const count = this.state.profile.dailySubjectsCount || 2;
+
+                if (this.state.profile.randomSubjects === 'YES') {
+                    const sorted = [...this.state.subjects].sort((a, b) => {
+                        return this.calculateSubjectProgress(a.id) - this.calculateSubjectProgress(b.id);
+                    });
+                    this.state.todaySubjects = sorted.slice(0, count).map(s => s.id);
+                } else {
+                    this.state.todaySubjects = this.state.subjects.slice(0, count).map(s => s.id);
+                }
+                this.saveState();
+            }
+
+            refreshDailySubjectsPrompt() {
+                this.pickDailySubjects();
+                this.renderDashboard();
+                this.showToast('TODAY\'S SUBJECT MISSIONS REFRESHED', 'info');
+            }
+
+            toggleTaskComplete(taskId) {
+                const task = this.state.tasks.find(t => t.id === taskId);
+                if (!task) return;
+
+                if (!task.completed && this.state.profile.proofRequired === 'YES' && !task.proofImage) {
+                    this.pendingProofTaskId = taskId;
+                    document.getElementById('modal-proof').classList.remove('hidden');
+                    return;
+                }
+
+                task.completed = !task.completed;
+                if (task.completed) {
+                    this.addXp(task.xp || 50);
+                    this.state.lastCompletedDate = this.getTodayDateString();
+                    this.state.streak++;
+                }
+
+                this.saveState();
+                this.renderDashboard();
+                if (document.getElementById('tab-calendar').classList.contains('active')) {
+                    this.renderCalendar();
+                }
+            }
+
+            handleProofImageSelect(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    this.pendingProofImageData = event.target.result;
+                    document.getElementById('proof-preview-box').innerHTML = `<img src="${this.pendingProofImageData}" class="w-full h-full object-cover rounded-xl">`;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            confirmTaskCompletionWithProof() {
+                if (!this.pendingProofTaskId) return;
+                const task = this.state.tasks.find(t => t.id === this.pendingProofTaskId);
+                if (task) {
+                    task.proofImage = this.pendingProofImageData;
+                    task.completed = true;
+                    this.addXp(task.xp || 50);
+                    this.state.lastCompletedDate = this.getTodayDateString();
+                    this.state.streak++;
+                    this.saveState();
+                }
+                this.closeModal('modal-proof');
+                this.pendingProofTaskId = null;
+                this.pendingProofImageData = null;
+                this.renderDashboard();
+            }
+
+            renderDashboard() {
+                document.getElementById('header-user-nickname').innerText = this.state.profile.nickname || 'WARRIOR';
+                const lvlObj = this.getUserLevelData();
+                document.getElementById('header-user-level').innerText = `LVL ${lvlObj.level}`;
+                document.getElementById('header-streak-count').innerText = this.state.streak;
+                document.getElementById('header-days-left').innerText = this.getDaysRemaining(this.state.profile.examDate);
+
+                const overall = this.calculateOverallProgress();
+                document.getElementById('dash-overall-percent').innerText = `${overall}%`;
+                document.getElementById('dash-overall-bar').style.width = `${overall}%`;
+
+                document.getElementById('dash-xp-display').innerText = `${this.state.xp} / ${lvlObj.maxXp} XP`;
+                document.getElementById('dash-level-title').innerText = `LEVEL ${lvlObj.level} — ${lvlObj.name}`;
+                
+                const levelRange = lvlObj.maxXp - lvlObj.minXp;
+                const levelProgress = Math.min(100, Math.max(0, Math.round(((this.state.xp - lvlObj.minXp) / levelRange) * 100)));
+                document.getElementById('dash-level-bar').style.width = `${levelProgress}%`;
+
+                const todayMissionsContainer = document.getElementById('today-missions-container');
+                const activeSubIds = (this.state.todaySubjects && this.state.todaySubjects.length) 
+                    ? this.state.todaySubjects 
+                    : this.state.subjects.slice(0, 2).map(s => s.id);
+
+                todayMissionsContainer.innerHTML = activeSubIds.map(subId => {
+                    const sub = this.state.subjects.find(s => s.id === subId);
+                    if (!sub) return '';
+
+                    const todayStr = this.getTodayDateString();
+                    const subTasks = this.state.tasks.filter(t => t.subjectId === sub.id && t.date === todayStr);
+
+                    return `
+                        <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                            <div class="flex items-center justify-between border-b border-[#22222D] pb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-[#070709] border border-[#FF0033]/40 flex items-center justify-center text-[#FF0033]">
+                                        <i class="fa-solid ${sub.icon} text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-display font-bold text-white text-base">${sub.name}</h4>
+                                        <span class="text-[10px] font-tech text-gray-400 uppercase">${this.calculateSubjectProgress(sub.id)}% SYLLABUS DONE</span>
+                                    </div>
+                                </div>
+                                <button onclick="app.openAddTaskModal('${sub.id}')" class="text-xs text-[#FF0033] hover:underline font-tech uppercase font-bold">
+                                    + ADD TASK
+                                </button>
+                            </div>
+
+                            <div class="space-y-2">
+                                ${subTasks.length ? subTasks.map(t => `
+                                    <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl flex items-center justify-between gap-2">
+                                        <div class="flex items-center gap-3">
+                                            <button onclick="app.toggleTaskComplete('${t.id}')" class="w-6 h-6 rounded-lg border border-[#FF0033] flex items-center justify-center text-xs transition ${t.completed ? 'bg-[#FF0033] text-white' : 'bg-transparent text-transparent'}">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                            <div>
+                                                <div class="text-sm text-white font-medium ${t.completed ? 'line-through text-gray-500' : ''}">${t.title}</div>
+                                                <div class="flex items-center gap-2 text-[10px] font-tech text-gray-400">
+                                                    <span>⏱ ${t.time} MIN</span>
+                                                    <span>+${t.xp} XP</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onclick="app.deleteTask('${t.id}')" class="text-xs text-gray-600 hover:text-red-500 p-1">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </div>
+                                `).join('') : `<p class="text-xs text-gray-500 italic py-2">No tasks planned for today in ${sub.name}. Click + ADD TASK to begin!</p>`}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                this.renderDashBosses();
+            }
+
+            renderDashBosses() {
+                const container = document.getElementById('dash-quick-quests');
+                container.innerHTML = this.state.bosses.map(b => `
+                    <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="font-display font-bold text-xs text-white uppercase truncate">${b.title}</span>
+                            <span class="text-[10px] font-tech text-amber-500 font-bold">+${b.xp} XP</span>
+                        </div>
+                        <div class="w-full h-2 bg-[#111116] rounded-full overflow-hidden border border-[#22222D]">
+                            <div class="h-full bg-[#FF0033]" style="width: ${Math.min(100, (b.current / b.target) * 100)}%"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-tech text-gray-400">
+                            <span>PROGRESS: ${b.current}/${b.target}</span>
+                            <span>${b.claimed ? 'CLAIMED' : 'ACTIVE'}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderCalendar() {
+                const monthYearHeader = document.getElementById('calendar-month-year');
+                const grid = document.getElementById('calendar-days-grid');
+                
+                const year = this.calendarCurrentMonth.getFullYear();
+                const month = this.calendarCurrentMonth.getMonth();
+                
+                const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+                monthYearHeader.innerText = `${monthNames[month]} ${year}`;
+
+                grid.innerHTML = '';
+
+                const firstDayIndex = new Date(year, month, 1).getDay();
+                const totalDays = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDayIndex; i++) {
+                    grid.innerHTML += `<div class="h-10 md:h-12 bg-transparent"></div>`;
+                }
+
+                for (let d = 1; d <= totalDays; d++) {
+                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const dayTasks = this.state.tasks.filter(t => t.date === dateStr);
+                    const completedTasks = dayTasks.filter(t => t.completed);
+
+                    let statusDot = '<span class="w-1.5 h-1.5 rounded-full bg-gray-700"></span>';
+                    if (dayTasks.length > 0) {
+                        if (completedTasks.length === dayTasks.length) {
+                            statusDot = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>';
+                        } else {
+                            statusDot = '<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>';
+                        }
+                    }
+
+                    const isSelected = dateStr === this.selectedPlannerDateStr;
+
+                    grid.innerHTML += `
+                        <button onclick="app.selectPlannerDate('${dateStr}')" class="h-10 md:h-12 rounded-xl p-1 flex flex-col items-center justify-between border transition ${
+                            isSelected ? 'bg-[#FF0033]/20 border-[#FF0033] text-white font-bold' : 'bg-[#070709] border-[#22222D] text-gray-300 hover:border-gray-500'
+                        }">
+                            <span class="text-xs font-tech">${d}</span>
+                            <div class="mb-1">${statusDot}</div>
+                        </button>
+                    `;
+                }
+
+                this.renderSelectedDateTasks();
+            }
+
+            selectPlannerDate(dateVal) {
+                if (dateVal === 'today') {
+                    this.selectedPlannerDateStr = this.getTodayDateString();
+                } else if (dateVal === 'tomorrow') {
+                    this.selectedPlannerDateStr = this.getTomorrowDateString();
+                } else {
+                    this.selectedPlannerDateStr = dateVal;
+                }
+                this.renderCalendar();
+            }
+
+            changeMonth(delta) {
+                this.calendarCurrentMonth.setMonth(this.calendarCurrentMonth.getMonth() + delta);
+                this.renderCalendar();
+            }
+
+            renderSelectedDateTasks() {
+                const container = document.getElementById('selected-date-tasks-container');
+                const titleEl = document.getElementById('selected-date-title');
+                
+                titleEl.innerText = this.selectedPlannerDateStr === this.getTodayDateString() ? 'TODAY' : this.selectedPlannerDateStr;
+
+                const dayTasks = this.state.tasks.filter(t => t.date === this.selectedPlannerDateStr);
+
+                if (!dayTasks.length) {
+                    container.innerHTML = `<p class="text-xs text-gray-500 py-4 text-center">No tasks scheduled for this date.</p>`;
+                    return;
+                }
+
+                container.innerHTML = dayTasks.map(t => {
+                    const sub = this.state.subjects.find(s => s.id === t.subjectId);
+                    return `
+                        <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <button onclick="app.toggleTaskComplete('${t.id}')" class="w-6 h-6 rounded-lg border border-[#FF0033] flex items-center justify-center text-xs transition ${t.completed ? 'bg-[#FF0033] text-white' : 'bg-transparent text-transparent'}">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <div>
+                                    <div class="text-sm text-white font-medium ${t.completed ? 'line-through text-gray-500' : ''}">${t.title}</div>
+                                    <div class="flex items-center gap-2 text-[10px] font-tech text-gray-400">
+                                        <span class="text-[#FF0033] font-bold">${sub ? sub.name : 'SUBJECT'}</span>
+                                        <span>⏱ ${t.time} MIN</span>
+                                        <span>+${t.xp} XP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="app.deleteTask('${t.id}')" class="text-xs text-gray-600 hover:text-red-500 p-1">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderQuestsTab() {
+                const container = document.getElementById('boss-quests-list');
+                container.innerHTML = this.state.bosses.map(b => `
+                    <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-[#FF0033]/20 border border-[#FF0033] flex items-center justify-center text-[#FF0033] text-lg">
+                                    <i class="fa-solid fa-skull"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-bold text-white text-base">${b.title}</h4>
+                                    <span class="text-[10px] font-tech text-amber-500 font-bold">+${b.xp} XP REWARD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-tech">
+                                <span class="text-gray-400">PROGRESS</span>
+                                <span class="text-white font-bold">${b.current} / ${b.target}</span>
+                            </div>
+                            <div class="w-full h-3 bg-[#070709] rounded-full overflow-hidden p-0.5 border border-[#22222D]">
+                                <div class="h-full bg-[#FF0033] rounded-full transition-all duration-300" style="width: ${Math.min(100, (b.current / b.target) * 100)}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <div class="flex items-center gap-2">
+                                <button onclick="app.incrementBossProgress('${b.id}', -1)" class="w-8 h-8 rounded-xl bg-[#070709] border border-[#22222D] text-white hover:border-[#FF0033] flex items-center justify-center">-</button>
+                                <button onclick="app.incrementBossProgress('${b.id}', 1)" class="w-8 h-8 rounded-xl bg-[#070709] border border-[#22222D] text-white hover:border-[#FF0033] flex items-center justify-center">+</button>
+                            </div>
+
+                            ${b.current >= b.target && !b.claimed ? `
+                                <button onclick="app.claimBossReward('${b.id}')" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-black font-tech font-bold text-xs uppercase rounded-xl transition">
+                                    CLAIM +${b.xp} XP
+                                </button>
+                            ` : `
+                                <span class="text-xs font-tech uppercase ${b.claimed ? 'text-emerald-500 font-bold' : 'text-gray-500'}">
+                                    ${b.claimed ? 'COMPLETED' : 'IN PROGRESS'}
+                                </span>
+                            `}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            incrementBossProgress(bossId, delta) {
+                const boss = this.state.bosses.find(b => b.id === bossId);
+                if (boss) {
+                    boss.current = Math.max(0, boss.current + delta);
+                    this.saveState();
+                    this.renderQuestsTab();
+                }
+            }
+
+            claimBossReward(bossId) {
+                const boss = this.state.bosses.find(b => b.id === bossId);
+                if (boss && !boss.claimed && boss.current >= boss.target) {
+                    boss.claimed = true;
+                    this.addXp(boss.xp);
+                    this.saveState();
+                    this.renderQuestsTab();
+                }
+            }
+
+            renderSubjectsTab() {
+                const container = document.getElementById('subjects-detailed-container');
+                container.innerHTML = this.state.subjects.map(sub => `
+                    <div class="bg-[#111116] border border-[#22222D] rounded-2xl p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-[#22222D] pb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-[#070709] border border-[#FF0033] flex items-center justify-center text-[#FF0033]">
+                                    <i class="fa-solid ${sub.icon} text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-lg text-white">${sub.name}</h3>
+                                    <div class="text-xs font-tech text-gray-400">${this.calculateSubjectProgress(sub.id)}% SYLLABUS COMPLETED</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="app.openAddChapterModal('${sub.id}')" class="px-3 py-1.5 bg-[#070709] border border-[#22222D] hover:border-[#FF0033] text-xs font-tech font-bold uppercase text-white rounded-xl transition">
+                                    + ADD CHAPTER
+                                </button>
+                                <button onclick="app.openConfirmModal('Delete Subject?', 'Are you sure you want to remove ${sub.name} and all its chapters?', () => app.removeSubject('${sub.id}'))" class="p-2 text-gray-500 hover:text-red-500">
+                                    <i class="fa-solid fa-trash-can text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                           ${sub.chapters.map(ch => `
+                                <div class="bg-[#070709] border border-[#22222D] p-3 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
+                                    <div class="flex-1">
+                                        <div class="text-sm font-medium text-white">${ch.name}</div>
+                                        <div class="text-[10px] font-tech text-gray-400 uppercase mt-0.5">STATUS: ${ch.status}</div>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <input type="range" min="0" max="100" value="${ch.progress}" 
+                                            onchange="app.updateChapterProgress('${sub.id}', '${ch.id}', this.value)"
+                                            class="w-28 accent-[#FF0033]">
+                                        <span class="font-tech text-xs text-[#FF0033] font-bold w-12 text-right">${ch.progress}%</span>
+                                        <button onclick="app.deleteChapter('${sub.id}', '${ch.id}')" class="text-xs text-gray-600 hover:text-red-500 p-1">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            updateChapterProgress(subId, chId, val) {
+                const sub = this.state.subjects.find(s => s.id === subId);
+                if (sub) {
+                    const ch = sub.chapters.find(c => c.id === chId);
+                    if (ch) {
+                        ch.progress = parseInt(val);
+                        ch.status = ch.progress === 100 ? 'COMPLETED' : ch.progress > 0 ? 'IN_PROGRESS' : 'NOT_STARTED';
+                        this.saveState();
+                        this.renderSubjectsTab();
+                    }
+                }
+            }
+
+            deleteChapter(subId, chId) {
+                const sub = this.state.subjects.find(s => s.id === subId);
+                if (sub) {
+                    sub.chapters = sub.chapters.filter(c => c.id !== chId);
+                    this.saveState();
+                    this.renderSubjectsTab();
+                    this.showToast('CHAPTER REMOVED', 'info');
+                }
+            }
+
+            removeSubject(subId) {
+                this.state.subjects = this.state.subjects.filter(s => s.id !== subId);
+                this.saveState();
+                if (document.getElementById('setup-wizard').classList.contains('hidden')) {
+                    this.renderSubjectsTab();
+                } else {
+                    this.renderWizardSubjectsList();
+                }
+                this.showToast('SUBJECT REMOVED', 'info');
+            }
+
+            renderAnalyticsTab() {
+                document.getElementById('weekly-study-days').innerText = `${this.state.streak} DAYS`;
+                const doneTasks = this.state.tasks.filter(t => t.completed).length;
+                document.getElementById('weekly-tasks-done').innerText = doneTasks;
+                document.getElementById('weekly-xp-gained').innerText = this.state.xp;
+                document.getElementById('weekly-total-progress').innerText = `${this.calculateOverallProgress()}%`;
+
+                if (this.state.subjects.length) {
+                    const sortedSubs = [...this.state.subjects].sort((a, b) => this.calculateSubjectProgress(b.id) - this.calculateSubjectProgress(a.id));
+                    document.getElementById('weekly-strongest-sub').innerText = sortedSubs[0].name;
+                    document.getElementById('weekly-strongest-detail').innerText = `${this.calculateSubjectProgress(sortedSubs[0].id)}% syllabus completed`;
+
+                    const weakest = sortedSubs[sortedSubs.length - 1];
+                    document.getElementById('weekly-weakest-sub').innerText = weakest.name;
+                    document.getElementById('weekly-weakest-detail').innerText = `${this.calculateSubjectProgress(weakest.id)}% syllabus completed`;
+                }
+
+                const barsContainer = document.getElementById('analytics-subjects-bars');
+                barsContainer.innerHTML = this.state.subjects.map(sub => {
+                    const prog = this.calculateSubjectProgress(sub.id);
+                    return `
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-tech">
+                                <span class="text-white font-bold">${sub.name}</span>
+                                <span class="text-[#FF0033] font-bold">${prog}%</span>
+                            </div>
+                            <div class="w-full h-3 bg-[#070709] rounded-full overflow-hidden p-0.5 border border-[#22222D]">
+                                <div class="h-full bg-gradient-to-r from-[#88001B] to-[#FF0033] rounded-full transition-all duration-500" style="width: ${prog}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            renderSettingsTab() {
+                document.getElementById('settings-name').value = this.state.profile.fullname || '';
+                document.getElementById('settings-nickname').value = this.state.profile.nickname || '';
+                document.getElementById('settings-exam-date').value = this.state.profile.examDate || '';
+                document.getElementById('settings-daily-hours').value = this.state.profile.dailyHours || 4;
+            }
+
+            saveProfileSettings() {
+                this.state.profile.fullname = document.getElementById('settings-name').value;
+                this.state.profile.nickname = document.getElementById('settings-nickname').value;
+                this.state.profile.examDate = document.getElementById('settings-exam-date').value;
+                this.state.profile.dailyHours = parseInt(document.getElementById('settings-daily-hours').value) || 4;
+                this.saveState();
+                this.renderDashboard();
+                this.showToast('PROFILE PREFERENCES SAVED', 'success');
+            }
+
+            exportUserData() {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state));
+                const downloadAnchor = document.createElement('a');
+                downloadAnchor.setAttribute("href", dataStr);
+                downloadAnchor.setAttribute("download", `BOARD_WARRIOR_BACKUP_${this.getTodayDateString()}.json`);
+                document.body.appendChild(downloadAnchor);
+                downloadAnchor.click();
+                downloadAnchor.remove();
+                this.showToast('DATA EXPORTED SUCCESSFULLY', 'success');
+            }
+
+            importUserData(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const imported = JSON.parse(e.target.result);
+                        if (imported && imported.subjects) {
+                            this.state = imported;
+                            this.saveState();
+                            this.renderDashboard();
+                            this.showToast('BACKUP DATA RESTORED SUCCESSFULLY', 'success');
+                        }
+                    } catch (err) {
+                        this.showToast('INVALID JSON DATA FILE', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            }
+
+            resetAllData() {
+                localStorage.removeItem(this.storageKey);
+                this.state = this.getDefaultState();
+                this.saveState();
+                location.reload();
+            }
+
+            openAddTaskModal(defaultSubId = null, defaultDateStr = null) {
+                const subSelect = document.getElementById('task-input-subject');
+                subSelect.innerHTML = this.state.subjects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+                if (defaultSubId) subSelect.value = defaultSubId;
+
+                document.getElementById('task-input-title').value = '';
+                document.getElementById('task-input-date').value = defaultDateStr || this.getTodayDateString();
+
+                document.getElementById('modal-task').classList.remove('hidden');
+            }
+
+            saveTaskFromModal() {
+                const title = document.getElementById('task-input-title').value;
+                const subjectId = document.getElementById('task-input-[#FF0033] subject') ? document.getElementById('task-input-subject').value : document.getElementById('task-input-subject').value;
+                const slot = document.getElementById('task-input-slot').value;
+                const time = parseInt(document.getElementById('task-input-time').value) || 45;
+                const xp = parseInt(document.getElementById('task-input-xp').value) || 50;
+                const date = document.getElementById('task-input-date').value || this.getTodayDateString();
+
+                if (!title) {
+                    this.showToast('PLEASE ENTER A TASK TITLE', 'error');
+                    return;
+                }
+
+                this.state.tasks.push({
+                    id: 't_' + Date.now(),
+                    title,
+                    subjectId,
+                    slot,
+                    time,
+                    xp,
+                    date,
+                    completed: false,
+                    proofImage: null
+                });
+
+                this.saveState();
+                this.closeModal('modal-task');
+                this.renderDashboard();
+                if (document.getElementById('tab-calendar').classList.contains('active')) {
+                    this.renderCalendar();
+                }
+                this.showToast('NEW TASK MISSION SAVED', 'success');
+            }
+
+            deleteTask(taskId) {
+                this.state.tasks = this.state.tasks.filter(t => t.id !== taskId);
+                this.saveState();
+                this.renderDashboard();
+                if (document.getElementById('tab-calendar').classList.contains('active')) {
+                    this.renderCalendar();
+                }
+                this.showToast('TASK DELETED', 'info');
+            }
+
+            openAddSubjectModal() {
+                document.getElementById('sub-input-name').value = '';
+                document.getElementById('modal-add-subject').classList.remove('hidden');
+            }
+
+            saveNewSubjectModal() {
+                const name = document.getElementById('sub-input-name').value.trim().toUpperCase();
+                const icon = document.getElementById('sub-input-icon').value;
+
+                if (!name) {
+                    this.showToast('ENTER SUBJECT NAME', 'error');
+                    return;
+                }
+
+                const newSub = {
+                    id: 'sub_' + Date.now(),
+                    name,
+                    icon,
+                    color: '#FF0033',
+                    chapters: []
+                };
+
+                this.state.subjects.push(newSub);
+                this.saveState();
+                this.closeModal('modal-add-subject');
+
+                if (document.getElementById('setup-wizard').classList.contains('hidden')) {
+                    this.renderSubjectsTab();
+                } else {
+                    this.renderWizardSubjectsList();
+                }
+                this.showToast('NEW SUBJECT CREATED', 'success');
+            }
+
+            openAddChapterModal(defaultSubId = null) {
+                const select = document.getElementById('ch-input-subject');
+                select.innerHTML = this.state.subjects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+                if (defaultSubId) select.value = defaultSubId;
+
+                document.getElementById('ch-input-name').value = '';
+                document.getElementById('ch-input-progress').value = '0';
+                document.getElementById('modal-add-chapter').classList.remove('hidden');
+            }
+
+            saveNewChapterModal() {
+                const subId = document.getElementById('ch-input-subject').value;
+                const name = document.getElementById('ch-input-name').value.trim();
+                const progress = parseInt(document.getElementById('ch-input-progress').value) || 0;
+
+                if (!name) {
+                    this.showToast('ENTER CHAPTER TITLE', 'error');
+                    return;
+                }
+
+                const sub = this.state.subjects.find(s => s.id === subId);
+                if (sub) {
+                    sub.chapters.push({
+                        id: 'ch_' + Date.now(),
+                        name,
+                        progress,
+                        status: progress === 100 ? 'COMPLETED' : progress > 0 ? 'IN_PROGRESS' : 'NOT_STARTED'
+                    });
+
+                    this.saveState();
+                    this.closeModal('modal-add-chapter');
+                    this.renderSubjectsTab();
+                    this.showToast('CHAPTER ADDED TO SYLLABUS', 'success');
+                }
+            }
+
+            openCreateBossModal() {
+                document.getElementById('boss-input-title').value = '';
+                document.getElementById('modal-boss').classList.remove('hidden');
+            }
+
+            saveBossQuestModal() {
+                const title = document.getElementById('boss-input-title').value.trim().toUpperCase();
+                const target = parseInt(document.getElementById('boss-input-target').value) || 5;
+                const xp = parseInt(document.getElementById('boss-input-xp').value) || 500;
+
+                if (!title) {
+                    this.showToast('ENTER BOSS TITLE', 'error');
+                    return;
+                }
+
+                this.state.bosses.push({
+                    id: 'b_' + Date.now(),
+                    title,
+                    current: 0,
+                    target,
+                    xp,
+                    claimed: false
+                });
+
+                this.saveState();
+                this.closeModal('modal-boss');
+                this.renderQuestsTab();
+                this.showToast('NEW BOSS QUEST DEPLOYED', 'success');
+            }
+
+            openConfirmModal(title, desc, actionFn) {
+                document.getElementById('confirm-modal-title').innerText = title;
+                document.getElementById('confirm-modal-desc').innerText = desc;
+                const actionBtn = document.getElementById('confirm-modal-action-btn');
+                
+                actionBtn.onclick = () => {
+                    actionFn();
+                    this.closeModal('modal-confirm');
+                };
+
+                document.getElementById('modal-confirm').classList.remove('hidden');
+            }
+
+            closeModal(modalId) {
+                document.getElementById(modalId).classList.add('hidden');
+            }
+
+            switchTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+                const activeTab = document.getElementById(`tab-${tabId}`);
+                if (activeTab) activeTab.classList.add('active');
+
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    if (btn.dataset.tab === tabId) {
+                        btn.classList.remove('text-gray-400');
+                        btn.classList.add('text-[#FF0033]');
+                    } else {
+                        btn.classList.remove('text-[#FF0033]');
+                        btn.classList.add('text-gray-400');
+                    }
+                });
+
+                if (tabId === 'home') this.renderDashboard();
+                else if (tabId === 'calendar') this.renderCalendar();
+                else if (tabId === 'quests') this.renderQuestsTab();
+                else if (tabId === 'subjects') this.renderSubjectsTab();
+                else if (tabId === 'progress') this.renderAnalyticsTab();
+                else if (tabId === 'settings') this.renderSettingsTab();
+            }
+        }
+
+        // Initialize Global App Instance
+        window.onload = function() {
+            window.app = new BoardWarriorApp();
+            window.app.init();
+        };
+    </script>
+</body>
+</html>
